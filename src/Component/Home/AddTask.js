@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
-const AddTask = () => {
+const AddTask = ({ refetch }) => {
+    const [loading, setLoading] = useState(false);
     const [user] = useAuthState(auth);
     const addTask = (event) => {
         event.preventDefault();
+        setLoading(true);
         const title = event.target.title.value;
         const description = event.target.description.value;
+        const status = true;
         const email = user.email;
-        const taskData = { title, description, email };
+        const taskData = { title, description, email, status };
         fetch('http://localhost:5000/task', {
             method: "POST",
             headers: {
@@ -20,8 +23,11 @@ const AddTask = () => {
         })
             .then(res => res.json())
             .then(data => {
+
                 if (data.acknowledged) {
-                    toast("Your Task Added Successfully!")
+                    toast("Your Task Added Successfully!");
+                    setLoading(false);
+                    refetch();
                 }
                 else {
                     toast.error("Something is wrong Please Try Again!")
@@ -46,7 +52,14 @@ const AddTask = () => {
                                 <textarea name="description" className="textarea w-full textarea-primary" placeholder="Task Description" required />
                             </div>
 
-                            <button className='text-white btn-primary btn w-full'>Add Task</button>
+                            {
+                                loading ? <button type="button" className="text-white btn-primary btn w-full" disabled>
+                                    <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+
+                                    </svg>
+                                    Processing...
+                                </button> : <button className='text-white btn-primary btn w-full'>Add Task</button>
+                            }
                         </form>
                     </div>
                 </div>
