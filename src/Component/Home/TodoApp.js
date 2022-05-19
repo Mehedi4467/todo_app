@@ -31,7 +31,7 @@ const TodoApp = () => {
 
 
                         {
-                            data.length !== 0 ? data?.map(task => <Task key={task._id} refetch={refetch} task={task}></Task>) : <p className='text-primary'>You have no current task!</p>
+                            data?.length !== 0 ? data?.map(task => <Task key={task._id} refetch={refetch} task={task}></Task>) : <p className='text-primary'>You have no current task!</p>
                         }
 
 
