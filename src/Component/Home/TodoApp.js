@@ -10,7 +10,7 @@ import './Home.css';
 const TodoApp = () => {
     const [user] = useAuthState(auth);
     const { isLoading, data, refetch } = useQuery('taskData', () =>
-        fetch(`http://localhost:5000/task/${user.email}`).then(res =>
+        fetch(`https://todo-my-app.herokuapp.com/task/${user.email}`).then(res =>
             res.json()
         )
     );

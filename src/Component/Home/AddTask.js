@@ -14,7 +14,7 @@ const AddTask = ({ refetch }) => {
         const status = true;
         const email = user.email;
         const taskData = { title, description, email, status };
-        fetch('http://localhost:5000/task', {
+        fetch('https://todo-my-app.herokuapp.com/task', {
             method: "POST",
             headers: {
                 'content-type': 'application/json',
