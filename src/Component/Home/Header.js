@@ -26,26 +26,24 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="navbar-center">
-                    <Link to='/' className="btn btn-ghost text-primary normal-case text-xl">TODO APP</Link>
+                    <Link to='/' className="md:ml-20 btn btn-ghost text-primary normal-case text-xl">TODO APP</Link>
                 </div>
                 <div className="navbar-end">
 
 
-                    {user ? <div onClick={() => signOut(auth)} className="flex cursor-pointer items-center justify-center btn-ghost btn-circle w-1/2">
-                        <div className="flex justify-between">
-                            <i className="mr-6 text-xl text-primary fa-solid fa-arrow-right-to-bracket"></i>
-                            <p>Log Out</p>
-                        </div>
-                    </div> : <button className="btn btn-ghost btn-circle">
-                        <div className="">
-                            <i className="text-xl text-primary fa-solid fa-arrow-right-to-bracket"></i>
-                        </div>
-                    </button>}
+                    {user && <button onClick={() => signOut(auth)} className="btn btn-ghost btn-circle">
+
+                        <i className="text-xl text-primary fa-solid fa-right-from-bracket"></i>
+
+
+                    </button>
+
+                    }
 
 
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

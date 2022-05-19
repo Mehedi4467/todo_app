@@ -4,7 +4,7 @@ import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Spinner from '../Spinner/Spinner';
 const RequireAuth = ({ children }) => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     let location = useLocation();
     if (loading) {
         return <Spinner></Spinner>
